@@ -6,91 +6,94 @@
     <title>Penyusunan Formulir</title>
     <style>
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f5f5f5;
             margin: 0;
-            padding: 20px 10px;
+            padding: 15px 0;
             color: #333;
         }
         .container {
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
             background: white;
             border-radius: 16px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         .header {
-            padding: 25px 20px;
+            padding: 20px;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
         .header h1 {
             margin: 0;
-            font-size: 26px;
-            color: #1a73e8;
+            font-size: 24px;
+            font-weight: 600;
         }
         .tabs {
             display: flex;
-            background: #f9f9f9;
+            border-bottom: 1px solid #ddd;
         }
         .tab {
             flex: 1;
-            padding: 16px;
+            padding: 15px 10px;
             text-align: center;
-            font-weight: 500;
+            background: #f9f9f9;
             cursor: pointer;
-            border-bottom: 3px solid transparent;
+            font-weight: 500;
         }
         .tab.active {
             background: white;
-            border-bottom: 3px solid #1a73e8;
-            color: #1a73e8;
+            border-bottom: 3px solid #007bff;
+            color: #007bff;
         }
         .tab-content {
             display: none;
-            padding: 25px 20px;
+            padding: 20px;
         }
         .tab-content.active {
             display: block;
         }
         label {
             display: block;
-            margin: 18px 0 8px;
+            margin: 15px 0 6px;
             font-weight: 500;
         }
-        input, select {
+        input[type="text"], input[type="email"], input[type="date"], select {
             width: 100%;
-            padding: 13px;
-            border: 1px solid #ddd;
+            padding: 12px;
+            border: 1px solid #ccc;
             border-radius: 8px;
-            font-size: 16px;
             box-sizing: border-box;
+            font-size: 16px;
         }
         .radio-group {
             display: flex;
             gap: 25px;
-            margin-top: 10px;
+            margin: 10px 0;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
         }
         button {
             width: 100%;
-            padding: 16px;
-            background: #1a73e8;
+            padding: 15px;
+            background: #007bff;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 17px;
-            margin-top: 30px;
+            margin-top: 25px;
             cursor: pointer;
         }
-        button:hover {
-            background: #1557b0;
-        }
         .section-title {
-            font-size: 19px;
-            color: #1a73e8;
-            margin: 25px 0 15px;
+            font-size: 18px;
             font-weight: 600;
+            color: #007bff;
+            margin: 20px 0 12px;
         }
     </style>
 </head>
@@ -100,18 +103,20 @@
             <h1>Penyusunan Formulir</h1>
         </div>
 
+        <!-- Tabs -->
         <div class="tabs">
             <div class="tab active" onclick="openTab(0)">Data Demografi</div>
             <div class="tab" onclick="openTab(1)">Data Bank</div>
-            <div class="tab" onclick="openTab(2)">Data Transaksi</div>
+            <div class="tab" onclick="openTab(2)">Data Transaksi Keuangan</div>
         </div>
 
         <form id="mainForm">
-            <!-- Tab 1 -->
+            <!-- Tab 1: Data Demografi -->
             <div id="tab0" class="tab-content active">
                 <div class="section-title">Data Demografi</div>
+                
                 <label>Nama Pengguna:</label>
-                <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
+                <input type="text" id="nama" placeholder="Masukkan nama lengkap">
 
                 <label>Tanggal Lahir:</label>
                 <input type="date" id="tgl_lahir">
@@ -120,7 +125,7 @@
                 <input type="text" id="alamat" placeholder="Alamat lengkap...">
 
                 <label>No Telepon:</label>
-                <input type="tel" id="telepon" placeholder="Contoh: 08123456789">
+                <input type="text" id="telepon" placeholder="Contoh: 08123456789">
 
                 <label>Email:</label>
                 <input type="email" id="email" placeholder="nama@email.com">
@@ -138,9 +143,10 @@
                 </select>
             </div>
 
-            <!-- Tab 2 -->
+            <!-- Tab 2: Data Bank -->
             <div id="tab1" class="tab-content">
                 <div class="section-title">Data Bank</div>
+                
                 <label>Nama Bank:</label>
                 <select id="nama_bank">
                     <option value="">Cari/Pilih Bank...</option>
@@ -148,7 +154,7 @@
                     <option value="BNI">BNI</option>
                     <option value="BRI">BRI</option>
                     <option value="Mandiri">Mandiri</option>
-                    <option value="BSI">Bank Syariah Indonesia</option>
+                    <option value="BSI">BSI</option>
                     <option value="CIMB">CIMB Niaga</option>
                 </select>
 
@@ -156,9 +162,10 @@
                 <input type="text" id="no_rekening" placeholder="Masukkan nomor rekening">
             </div>
 
-            <!-- Tab 3 -->
+            <!-- Tab 3: Data Transaksi Keuangan -->
             <div id="tab2" class="tab-content">
                 <div class="section-title">Data Transaksi Keuangan</div>
+                
                 <label>Tanggal Transaksi:</label>
                 <input type="date" id="tgl_transaksi">
 
@@ -187,17 +194,16 @@
 
         document.getElementById('mainForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Formulir berhasil dikirim!\n\n(Data muncul di console browser)');
-            console.log('Data Formulir:');
-            console.log({
+            alert('✅ Formulir berhasil dikirim!');
+            console.log('Data yang dikirim:', {
                 nama: document.getElementById('nama').value,
                 tgl_lahir: document.getElementById('tgl_lahir').value,
                 alamat: document.getElementById('alamat').value,
                 telepon: document.getElementById('telepon').value,
                 email: document.getElementById('email').value,
                 pendidikan: document.getElementById('pendidikan').value,
-                bank: document.getElementById('nama_bank').value,
-                rekening: document.getElementById('no_rekening').value,
+                nama_bank: document.getElementById('nama_bank').value,
+                no_rekening: document.getElementById('no_rekening').value,
                 tgl_transaksi: document.getElementById('tgl_transaksi').value,
                 uraian: document.getElementById('uraian').value,
                 jenis: document.querySelector('input[name="jenis"]:checked')?.value || ''
