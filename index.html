@@ -1,214 +1,146 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyusunan Formulir</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 15px 0;
-            color: #333;
-        }
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 600;
-        }
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid #ddd;
-        }
-        .tab {
-            flex: 1;
-            padding: 15px 10px;
-            text-align: center;
-            background: #f9f9f9;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        .tab.active {
-            background: white;
-            border-bottom: 3px solid #007bff;
-            color: #007bff;
-        }
-        .tab-content {
-            display: none;
-            padding: 20px;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        label {
-            display: block;
-            margin: 15px 0 6px;
-            font-weight: 500;
-        }
-        input[type="text"], input[type="email"], input[type="date"], select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .radio-group {
-            display: flex;
-            gap: 25px;
-            margin: 10px 0;
-        }
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: normal;
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 17px;
-            margin-top: 25px;
-            cursor: pointer;
-        }
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #007bff;
-            margin: 20px 0 12px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Terhubung Spreadsheet</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+h2 {
+    text-align: center;
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.radio-group {
+    margin: 10px 0;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Penyusunan Formulir</h1>
-        </div>
 
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab active" onclick="openTab(0)">Data Demografi</div>
-            <div class="tab" onclick="openTab(1)">Data Bank</div>
-            <div class="tab" onclick="openTab(2)">Data Transaksi Keuangan</div>
-        </div>
+<div class="container">
+<h2>Formulir Data</h2>
 
-        <form id="mainForm">
-            <!-- Tab 1: Data Demografi -->
-            <div id="tab0" class="tab-content active">
-                <div class="section-title">Data Demografi</div>
-                
-                <label>Nama Pengguna:</label>
-                <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+<form id="form">
 
-                <label>Tanggal Lahir:</label>
-                <input type="date" id="tgl_lahir">
+<label>Nama</label>
+<input type="text" id="nama" required>
 
-                <label>Alamat:</label>
-                <input type="text" id="alamat" placeholder="Alamat lengkap...">
+<label>Tanggal Lahir</label>
+<input type="date" id="tgl_lahir">
 
-                <label>No Telepon:</label>
-                <input type="text" id="telepon" placeholder="Contoh: 08123456789">
+<label>Alamat</label>
+<input type="text" id="alamat">
 
-                <label>Email:</label>
-                <input type="email" id="email" placeholder="nama@email.com">
+<label>No Telepon</label>
+<input type="text" id="telepon">
 
-                <label>Tingkatan Pendidikan:</label>
-                <select id="pendidikan">
-                    <option value="">Pilih Pendidikan</option>
-                    <option value="SD">SD</option>
-                    <option value="SMP">SMP</option>
-                    <option value="SMA">SMA/SMK</option>
-                    <option value="D3">D3</option>
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                    <option value="S3">S3</option>
-                </select>
-            </div>
+<label>Email</label>
+<input type="email" id="email">
 
-            <!-- Tab 2: Data Bank -->
-            <div id="tab1" class="tab-content">
-                <div class="section-title">Data Bank</div>
-                
-                <label>Nama Bank:</label>
-                <select id="nama_bank">
-                    <option value="">Cari/Pilih Bank...</option>
-                    <option value="BCA">BCA</option>
-                    <option value="BNI">BNI</option>
-                    <option value="BRI">BRI</option>
-                    <option value="Mandiri">Mandiri</option>
-                    <option value="BSI">BSI</option>
-                    <option value="CIMB">CIMB Niaga</option>
-                </select>
+<label>Pendidikan</label>
+<select id="pendidikan">
+<option value="">Pilih</option>
+<option>SD</option>
+<option>SMP</option>
+<option>SMA</option>
+<option>D3</option>
+<option>S1</option>
+<option>S2</option>
+</select>
 
-                <label>Nomor Rekening:</label>
-                <input type="text" id="no_rekening" placeholder="Masukkan nomor rekening">
-            </div>
+<label>Nama Bank</label>
+<select id="nama_bank">
+<option value="">Pilih</option>
+<option>BCA</option>
+<option>BRI</option>
+<option>BNI</option>
+<option>Mandiri</option>
+<option>BSI</option>
+</select>
 
-            <!-- Tab 3: Data Transaksi Keuangan -->
-            <div id="tab2" class="tab-content">
-                <div class="section-title">Data Transaksi Keuangan</div>
-                
-                <label>Tanggal Transaksi:</label>
-                <input type="date" id="tgl_transaksi">
+<label>No Rekening</label>
+<input type="text" id="no_rekening">
 
-                <label>Uraian Transaksi:</label>
-                <input type="text" id="uraian" placeholder="Contoh: Bayar Listrik">
+<label>Tanggal Transaksi</label>
+<input type="date" id="tgl_transaksi">
 
-                <label>Jenis Transaksi:</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="jenis" value="Debet"> Debet</label>
-                    <label><input type="radio" name="jenis" value="Kredit"> Kredit</label>
-                </div>
-            </div>
+<label>Uraian</label>
+<input type="text" id="uraian">
 
-            <button type="submit">Kirim Formulir</button>
-        </form>
-    </div>
+<label>Jenis Transaksi</label>
+<div class="radio-group">
+<label><input type="radio" name="jenis" value="Debet"> Debet</label>
+<label><input type="radio" name="jenis" value="Kredit"> Kredit</label>
+</div>
 
-    <script>
-        function openTab(n) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            document.querySelectorAll('.tab')[n].classList.add('active');
-            document.getElementById('tab' + n).classList.add('active');
-        }
+<button type="submit">Kirim</button>
 
-        document.getElementById('mainForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('✅ Formulir berhasil dikirim!');
-            console.log('Data yang dikirim:', {
-                nama: document.getElementById('nama').value,
-                tgl_lahir: document.getElementById('tgl_lahir').value,
-                alamat: document.getElementById('alamat').value,
-                telepon: document.getElementById('telepon').value,
-                email: document.getElementById('email').value,
-                pendidikan: document.getElementById('pendidikan').value,
-                nama_bank: document.getElementById('nama_bank').value,
-                no_rekening: document.getElementById('no_rekening').value,
-                tgl_transaksi: document.getElementById('tgl_transaksi').value,
-                uraian: document.getElementById('uraian').value,
-                jenis: document.querySelector('input[name="jenis"]:checked')?.value || ''
-            });
-        });
-    </script>
+</form>
+</div>
+
+<script>
+const URL = "https://script.google.com/macros/s/AKfycbwHZG1EZAufiX2oFlF8tFGubs2fsMv-pULce23zn9tlfskz0aySYjUpDujKLBg5ha-S/exec"; // 🔴 GANTI DI SINI
+
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = {
+        nama: document.getElementById("nama").value,
+        tgl_lahir: document.getElementById("tgl_lahir").value,
+        alamat: document.getElementById("alamat").value,
+        telepon: document.getElementById("telepon").value,
+        email: document.getElementById("email").value,
+        pendidikan: document.getElementById("pendidikan").value,
+        nama_bank: document.getElementById("nama_bank").value,
+        no_rekening: document.getElementById("no_rekening").value,
+        tgl_transaksi: document.getElementById("tgl_transaksi").value,
+        uraian: document.getElementById("uraian").value,
+        jenis: document.querySelector('input[name="jenis"]:checked')?.value || ""
+    };
+
+    fetch(URL, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(res => res.text())
+    .then(() => {
+        alert("✅ Data berhasil dikirim ke Spreadsheet!");
+        document.getElementById("form").reset();
+    })
+    .catch(err => {
+        alert("❌ Gagal kirim data");
+        console.error(err);
+    });
+});
+</script>
+
 </body>
 </html>
