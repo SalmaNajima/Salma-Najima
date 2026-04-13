@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penyusunan Formulir</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px 10px;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .header {
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #1a73e8;
+        }
+        .tabs {
+            display: flex;
+            background: #f9f9f9;
+        }
+        .tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid #1a73e8;
+            color: #1a73e8;
+        }
+        .tab-content {
+            display: none;
+            padding: 25px 20px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .radio-group {
+            display: flex;
+            gap: 25px;
+            margin-top: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1557b0;
+        }
+        .section-title {
+            font-size: 19px;
+            color: #1a73e8;
+            margin: 25px 0 15px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Penyusunan Formulir</h1>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="openTab(0)">Data Demografi</div>
+            <div class="tab" onclick="openTab(1)">Data Bank</div>
+            <div class="tab" onclick="openTab(2)">Data Transaksi</div>
+        </div>
+
+        <form id="mainForm">
+            <!-- Tab 1 -->
+            <div id="tab0" class="tab-content active">
+                <div class="section-title">Data Demografi</div>
+                <label>Nama Pengguna:</label>
+                <input type="text" id="nama" placeholder="Masukkan nama lengkap" required>
+
+                <label>Tanggal Lahir:</label>
+                <input type="date" id="tgl_lahir">
+
+                <label>Alamat:</label>
+                <input type="text" id="alamat" placeholder="Alamat lengkap...">
+
+                <label>No Telepon:</label>
+                <input type="tel" id="telepon" placeholder="Contoh: 08123456789">
+
+                <label>Email:</label>
+                <input type="email" id="email" placeholder="nama@email.com">
+
+                <label>Tingkatan Pendidikan:</label>
+                <select id="pendidikan">
+                    <option value="">Pilih Pendidikan</option>
+                    <option value="SD">SD</option>
+                    <option value="SMP">SMP</option>
+                    <option value="SMA">SMA/SMK</option>
+                    <option value="D3">D3</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                </select>
+            </div>
+
+            <!-- Tab 2 -->
+            <div id="tab1" class="tab-content">
+                <div class="section-title">Data Bank</div>
+                <label>Nama Bank:</label>
+                <select id="nama_bank">
+                    <option value="">Cari/Pilih Bank...</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BNI">BNI</option>
+                    <option value="BRI">BRI</option>
+                    <option value="Mandiri">Mandiri</option>
+                    <option value="BSI">Bank Syariah Indonesia</option>
+                    <option value="CIMB">CIMB Niaga</option>
+                </select>
+
+                <label>Nomor Rekening:</label>
+                <input type="text" id="no_rekening" placeholder="Masukkan nomor rekening">
+            </div>
+
+            <!-- Tab 3 -->
+            <div id="tab2" class="tab-content">
+                <div class="section-title">Data Transaksi Keuangan</div>
+                <label>Tanggal Transaksi:</label>
+                <input type="date" id="tgl_transaksi">
+
+                <label>Uraian Transaksi:</label>
+                <input type="text" id="uraian" placeholder="Contoh: Bayar Listrik">
+
+                <label>Jenis Transaksi:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="jenis" value="Debet"> Debet</label>
+                    <label><input type="radio" name="jenis" value="Kredit"> Kredit</label>
+                </div>
+            </div>
+
+            <button type="submit">Kirim Formulir</button>
+        </form>
+    </div>
+
+    <script>
+        function openTab(n) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelectorAll('.tab')[n].classList.add('active');
+            document.getElementById('tab' + n).classList.add('active');
+        }
+
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Formulir berhasil dikirim!\n\n(Data muncul di console browser)');
+            console.log('Data Formulir:');
+            console.log({
+                nama: document.getElementById('nama').value,
+                tgl_lahir: document.getElementById('tgl_lahir').value,
+                alamat: document.getElementById('alamat').value,
+                telepon: document.getElementById('telepon').value,
+                email: document.getElementById('email').value,
+                pendidikan: document.getElementById('pendidikan').value,
+                bank: document.getElementById('nama_bank').value,
+                rekening: document.getElementById('no_rekening').value,
+                tgl_transaksi: document.getElementById('tgl_transaksi').value,
+                uraian: document.getElementById('uraian').value,
+                jenis: document.querySelector('input[name="jenis"]:checked')?.value || ''
+            });
+        });
+    </script>
+</body>
+</html>
